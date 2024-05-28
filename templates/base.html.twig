@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {{ encore_entry_link_tags('app') }}
+
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="{{ path('calendar') }}">Calendrier</a></li>
+                <li><a href="{{ path('amongus') }}">Among Us</a></li>
+                <li><a href="{{ path('lol') }}">League of Legends</a></li>
+                <li><a href="{{ path('tft') }}">TFT</a></li>
+                <li><a href="{{ path('rocketleague') }}">Rocket League</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+    <footer>
+                <li><a href="{{ path('contact') }}">Contacts</a></li>   
+                <li><a href="{{ path('about') }}">A Propos</a></li>
+        <p>&copy; 2024 Votre Site Web. Tous droits réservés.</p>
+    </footer>
+    {{ encore_entry_script_tags('app') }}
+</body>
+</html>

@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #838383; /* Couleur de fond pour tout le corps */
+}
+
+header, footer {
+    background-color: #df3f00; /* Couleur de fond différente pour le header et le footer */
+    color: rgb(0, 0, 0);
+    padding: 10px 0;
+    width: 100%;
+}
+
+header {
+    position: fixed; /* Fixe le header en haut */
+    top: 0;
+    left: 0;
+}
+
+footer {
+    position: fixed; /* Fixe le footer en bas */
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+main {
+    padding-top: 60px; /* Ajouter du padding en haut pour éviter le chevauchement avec le header */
+    padding-bottom: 40px; /* Ajouter du padding en bas pour éviter le chevauchement avec le footer */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+/* Styles pour le contenu de la page */
+.content {
+    padding: 20px;
+}
+
+.aboutpage {
+    background-color: #838383;
+}
+
+.actualitespage {
+    background-color: #838383;
+}
+
+.amonguspage {
+    background-color: #838383;
+}
+
+.autrespage {
+    background-color: #838383;
+}
+
+.calendrierpage {
+    background-color: #838383;
+}
+
+.contactpage {
+    background-color: #838383;
+}
+
+.homepage {
+    background-color: #838383;
+}
+
+.llanpage {
+    background-color: #838383;
+}
+
+.lolpage {
+    background-color: #838383;
+}
+
+.rocketleaguepage {
+    background-color: #838383;
+}
+
+.tftpage {
+    background-color: #838383;
+}
+
+.streamers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.streamer {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.streamer img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.streamer h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.streamer p {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.streamer a {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.streamer.live {
+    background-color: #00c02d;
+}
+
+.streamer.offline {
+    background-color: #979797;
+}
+
+/* Styles pour l'élément de chargement */
+#loading {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 20px;
+}
+
+h1{
+    text-align: center;
+} 

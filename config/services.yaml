@@ -1,0 +1,29 @@
+parameters:
+    twitch.client_id: '%env(TWITCH_CLIENT_ID)%'
+    twitch.client_secret: '%env(TWITCH_CLIENT_SECRET)%'
+
+services:
+    App\Service\TwitchService:
+        arguments:
+            $clientId: '%twitch.client_id%'
+            $clientSecret: '%twitch.client_secret%'
+        public: true
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $clientId: '%twitch.client_id%'
+            $clientSecret: '%twitch.client_secret%'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests.php'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']

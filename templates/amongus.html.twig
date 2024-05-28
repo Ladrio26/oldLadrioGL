@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Among Us{% endblock %}
+
+{% block body %}
+    <h1>Événements Among Us</h1>
+    <ul>
+        {% for event in events %}
+            <li>
+                <strong>{{ event.title }}</strong><br>
+                <em>{{ event.date|date('d-m-Y H:i') }}</em><br>
+                <p>{{ event.description }}</p>
+                <p>Jeu: {{ event.jeu }}</p>
+            </li>
+        {% else %}
+            <li>Aucun événement futur pour Among Us.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

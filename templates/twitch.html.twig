@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Twitch Streamers{% endblock %}
+
+{% block body %}
+    <h1>Chaînes Twitch des copains</h1>
+    <div id="loading">Chargement en cours...</div>
+    <div class="streamers" id="streamers" style="display: none;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cacheKey = 'twitchStreamersData';
+            const cacheTimestampKey = 'twitchStreamersDataTimestamp';
+            const cacheTTL = 60 * 1 * 1000; // Durée de vie du cache en millisecondes (ici 1 minute)
+            const cachedData = sessionStorage.getItem(cacheKey);
+            const cachedTimestamp = sessionStorage.getItem(cacheTimestampKey);
+            const now = new Date().getTime();
+
+            if (cachedData && cachedTimestamp && (now - cachedTimestamp < cacheTTL)) {
+                renderStreamers(JSON.parse(cachedData));
+            } else {
+                fetch('/api/twitch/streamers')
+                    .then(response => response.json())
+                    .then(data => {
+                        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+                        sessionStorage.setItem(cacheTimestampKey, now.toString());
+                        renderStreamers(data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching streamers:', error);
+                        document.getElementById('loading').innerText = 'Erreur lors du chargement des données.';
+                    });
+            }
+        });
+
+        function renderStreamers(streamers) {
+            const streamersContainer = document.getElementById('streamers');
+            streamersContainer.innerHTML = '';
+            document.getElementById('loading').style.display = 'none';
+            streamersContainer.style.display = 'flex';
+            streamers.forEach(streamer => {
+                const streamerDiv = document.createElement('div');
+                streamerDiv.classList.add('streamer');
+                streamerDiv.classList.add(streamer.is_live ? 'live' : 'offline');
+
+                streamerDiv.innerHTML = `
+                    <img src="${streamer.profile_image_url}" alt="${streamer.display_name}">
+                    <h2>${streamer.display_name}</h2>
+                    <p>Status: ${streamer.is_live ? 'En live' : 'Offline'}</p>
+                    <a href="https://www.twitch.tv/${streamer.login}" target="_blank">Visit Channel</a>
+                `;
+
+                streamersContainer.appendChild(streamerDiv);
+            });
+        }
+    </script>
+{% endblock %}
