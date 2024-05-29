@@ -16,6 +16,7 @@ header {
     position: fixed; /* Fixe le header en haut */
     top: 0;
     left: 0;
+    z-index: 1000; /* Assure que le header est au-dessus du contenu */
 }
 
 footer {
@@ -30,15 +31,29 @@ main {
     padding-bottom: 40px; /* Ajouter du padding en bas pour éviter le chevauchement avec le footer */
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    display: flex;
+}
+
+nav ul.nav-left {
+    margin-right: auto;
+}
+
+nav ul.nav-right {
+    margin-left: auto;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
@@ -52,47 +67,7 @@ nav ul li a {
     padding: 20px;
 }
 
-.aboutpage {
-    background-color: #838383;
-}
-
-.actualitespage {
-    background-color: #838383;
-}
-
-.amonguspage {
-    background-color: #838383;
-}
-
-.autrespage {
-    background-color: #838383;
-}
-
-.calendrierpage {
-    background-color: #838383;
-}
-
-.contactpage {
-    background-color: #838383;
-}
-
-.homepage {
-    background-color: #838383;
-}
-
-.llanpage {
-    background-color: #838383;
-}
-
-.lolpage {
-    background-color: #838383;
-}
-
-.rocketleaguepage {
-    background-color: #838383;
-}
-
-.tftpage {
+.aboutpage, .actualitespage, .amonguspage, .autrespage, .calendrierpage, .contactpage, .homepage, .llanpage, .lolpage, .rocketleaguepage, .tftpage {
     background-color: #838383;
 }
 
@@ -152,6 +127,6 @@ nav ul li a {
     padding: 20px;
 }
 
-h1{
+h1 {
     text-align: center;
-} 
+}
