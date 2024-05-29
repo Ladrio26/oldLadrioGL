@@ -1,0 +1,23 @@
+{# templates/event/new.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un événement{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouvel événement</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        
+        {# Champ de date avec le placeholder et l'aide au format #}
+        <div>
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date, {'attr': {'placeholder': 'AAAA-MM-DD HH:MM:SS (année-mois-jour heure:minutes:secondes)'}}) }}
+            <small>{{ form_help(form.date) }}</small>
+        </div>
+
+        {{ form_row(form.jeu) }}
+        {{ form_row(form.save) }}
+    {{ form_end(form) }}
+{% endblock %}

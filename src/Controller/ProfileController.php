@@ -3,15 +3,22 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
     public function index(): Response
     {
-        return $this->render('profile.html.twig');
+        $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour accéder à cette page.');
+        }
+
+        return $this->render('profile.html.twig', [
+            'user' => $user,
+        ]);
     }
 }
