@@ -12,8 +12,7 @@ class RocketLeagueController extends AbstractController
     #[Route('/rocketleague', name: 'rocketleague')]
     public function index(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findBy(['jeu' => 'Rocket League']);
-
+        $events = $eventRepository->findFutureEventsByGame('Rocket League');
         return $this->render('rocketleague.html.twig', [
             'events' => $events,
         ]);

@@ -13,7 +13,7 @@ class AmongusController extends AbstractController
     #[Route('/amongus', name: 'amongus')]
     public function index(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findBy(['jeu' => 'Among Us']);
+        $events = $eventRepository->findFutureEventsByGame('Among Us');
 
         return $this->render('amongus.html.twig', [
             'events' => $events,

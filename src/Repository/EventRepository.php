@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -33,5 +34,17 @@ class EventRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findFutureEventsByGame(string $game): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.date > :now')
+            ->andWhere('e.jeu = :game')
+            ->setParameter('now', new \DateTime())
+            ->setParameter('game', $game)
+            ->orderBy('e.date', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }

@@ -12,7 +12,7 @@ class TftController extends AbstractController
     #[Route('/tft', name: 'tft')]
     public function index(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findBy(['jeu' => 'TFT']);
+        $events = $eventRepository->findFutureEventsByGame('TFT');
 
         return $this->render('tft.html.twig', [
             'events' => $events,

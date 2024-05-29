@@ -12,7 +12,7 @@ class LolController extends AbstractController
     #[Route('/lol', name: 'lol')]
     public function index(EventRepository $eventRepository): Response
     {
-        $events = $eventRepository->findBy(['jeu' => 'LOL']);
+        $events = $eventRepository->findFutureEventsByGame('LOL');
 
         return $this->render('lol.html.twig', [
             'events' => $events,
