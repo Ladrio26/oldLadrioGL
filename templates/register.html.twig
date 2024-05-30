@@ -1,13 +1,17 @@
+{# templates/security/register.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Inscription</h1>
-    {{ form_start(registrationForm) }}
+<div class="login-container">
+    <h1 class="center-text">Inscription</h1>
+
+    {{ form_start(registrationForm, { 'attr': { 'class': 'center-form' } }) }}
         {{ form_widget(registrationForm) }}
-        <button type="submit">
+        <button type="submit" class="submit-button">
             S'inscrire
         </button>
     {{ form_end(registrationForm) }}
+</div>
 {% endblock %}
