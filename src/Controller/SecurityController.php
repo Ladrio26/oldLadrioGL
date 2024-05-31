@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('Password')->getData()
                 )
             );
 

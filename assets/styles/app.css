@@ -6,8 +6,8 @@ body {
 }
 
 header, footer {
-    background-color: #df3f00; /* Couleur de fond différente pour le header et le footer */
-    color: rgb(0, 0, 0);
+    background-color: #4B4B4B; /* Couleur de fond différente pour le header et le footer */
+    color: rgb(255, 255, 255);
     padding: 10px 0;
     width: 100%;
 }
@@ -58,7 +58,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
