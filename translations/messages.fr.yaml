@@ -1,0 +1,6 @@
+# messages.fr.yaml
+registration_form:
+    username: Nom d'utilisateur
+    email: Email
+    password: Mot de passe
+    submit: S'inscrire

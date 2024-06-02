@@ -2,73 +2,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #838383; /* Couleur de fond pour tout le corps */
+    background-color: #777777; /* Couleur de fond plus claire */
+    color: #333; /* Couleur du texte */
 }
 
-header, footer {
-    background-color: #4B4B4B; /* Couleur de fond différente pour le header et le footer */
-    color: rgb(255, 255, 255);
-    padding: 10px 0;
-    width: 100%;
-}
-
-header {
-    position: fixed; /* Fixe le header en haut */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Assure que le header est au-dessus du contenu */
-}
-
-footer {
-    position: fixed; /* Fixe le footer en bas */
-    bottom: 0;
-    left: 0;
-    text-align: center;
-}
-
-main {
-    padding-top: 60px; /* Ajouter du padding en haut pour éviter le chevauchement avec le header */
-    padding-bottom: 40px; /* Ajouter du padding en bas pour éviter le chevauchement avec le footer */
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul.nav-left {
-    margin-right: auto;
-}
-
-nav ul.nav-right {
-    margin-left: auto;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: rgb(255, 255, 255);
+a, .submit-button {
+    background-color: #6587ac;
+    color: white;
     text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
-/* Styles pour le contenu de la page */
-.content {
-    padding: 20px;
+a:hover, .submit-button:hover {
+    background-color: #6587ac;
 }
 
-.aboutpage, .actualitespage, .amonguspage, .autrespage, .calendrierpage, .contactpage, .homepage, .llanpage, .lolpage, .rocketleaguepage, .tftpage {
-    background-color: #838383;
+.submit-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    cursor: pointer;
 }
 
 .streamers {
@@ -164,10 +117,46 @@ h1 {
     margin-bottom: 1rem;
 }
 
+.center-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.center-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.center-form input[type="text"],
+.center-form input[type="email"],
+.center-form input[type="password"],
+.center-form button[type="submit"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.center-form button[type="submit"] {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.center-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
 .login-container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     width: 100%;
@@ -175,7 +164,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-} 
+}
 
 .error-message {
     color: red;
@@ -189,18 +178,4 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
-
-.submit-button {
-    padding: 0.75rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
 }

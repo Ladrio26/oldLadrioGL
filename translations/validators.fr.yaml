@@ -1,0 +1,4 @@
+# translations/validators.fr.yaml
+Symfony:
+    This value should not be blank: "Ce champ ne doit pas être vide"
+    This value is not valid: "Cette valeur n'est pas valide"
