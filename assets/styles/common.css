@@ -8,6 +8,12 @@ body {   /* Header Main Footer */
     min-height: 100vh;
 }
 
+h1 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -67,10 +73,6 @@ a {
     text-align: center;
     font-size: 1.5em;
     padding: 20px;
-}
-
-h1 {
-    text-align: center;
 }
 
 .profile-page {
@@ -167,33 +169,4 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
-
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-}
-
-.btn-primary:hover {
-    background-color: #45a049;
-    border-color: #45a049;
-}
-
-.card-title {
-    font-weight: bold;
-}
-
-.card-subtitle {
-    font-style: italic;
-}
-
-.alert-info {
-    background-color: #79b6d4;
-    border-color: #bee5eb;
-    color: #31708f;
 }

@@ -7,6 +7,7 @@ Encore
     .addEntry('common', './assets/styles/common.css')
     .addEntry('footer', './assets/styles/footer.css')
     .addEntry('header', './assets/styles/header.css')
+    .addEntry('calendar', './assets/styles/calendar.css')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

@@ -1,4 +1,8 @@
-.site-main {  /* Contient les pages */
+.site-main {
     flex: 1;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Commence en haut du contenu */
 }
