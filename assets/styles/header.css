@@ -1,51 +1,56 @@
-header {
-    color: rgb(255, 255, 255); /* Couleur du texte */
-    padding: 10px 20px;
-    width: 100%;
-    margin: 0; /* S'assure qu'il n'y a pas de marge */
-    position: fixed; /* Fixe le header en haut */
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Assure que le header est au-dessus du contenu */
-    background: linear-gradient(90deg, #3b3b3b, #464545); /* Dégradé de couleur */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour la navbar */
+.site-wrapper {   /* Englobe tout le header */
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-nav {
+.site-header {   /* Header */
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.navbar {   /* Barre de Navigation au complet */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 10px 20px; /* Espacement intérieur */
+    padding: 0 20px;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.navbar-brand {   /* Accueil */
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-menu {    /* Toutes les pages autre que l'accueil */
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
-nav ul li {
-    margin: 0 15px;
-}
+.navbar-links {    /* Pages Vitrines */
+    list-style: none;
+    display: flex;
+    gap: 15px;
+} 
 
-nav ul li a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    padding: 10px;
-    transition: background-color 0.3s, color 0.3s; /* Transition pour un effet de survol */
-}
-
-nav ul li a:hover {
-    background-color: #f39c12; /* Changement de couleur de fond au survol */
-    border-radius: 4px; /* Arrondir les coins */
-}
-
-nav ul.nav-left {
-    margin-right: auto;
-}
-
-nav ul.nav-right {
+.navbar-actions {    /* Pages Actives */
+    list-style: none;
+    display: flex;
+    gap: 15px;
     margin-left: auto;
+}
+
+.navbar-links li a,
+.navbar-actions li a {
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-links li a:hover,
+.navbar-actions li a:hover {
+    background-color: #575757;
 }

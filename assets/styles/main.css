@@ -1,12 +1,4 @@
-main {
-    padding-top: 80px; /* Ajouter du padding en haut pour éviter le chevauchement avec le header */
-    padding-bottom: 60px; /* Ajouter du padding en bas pour éviter le chevauchement avec le footer */
-}
-
-.content {
+.site-main {  /* Contient les pages */
+    flex: 1;
     padding: 20px;
-    background-color: #fff; /* Fond blanc pour les sections de contenu */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre pour donner de la profondeur */
-    border-radius: 8px; /* Bords arrondis */
-    margin-bottom: 20px; /* Espace entre les sections */
 }

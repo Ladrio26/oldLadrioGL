@@ -3,46 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {{ encore_entry_link_tags('app') }}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {{ encore_entry_link_tags('main') }}
+    {{ encore_entry_link_tags('common') }}
+    {{ encore_entry_link_tags('footer') }}
+    {{ encore_entry_link_tags('header') }}
 </head>
 <body>
-    <header>
-    <nav>
-        <ul class="nav-left">
-            <li><a href="{{ path('home') }}">Accueil</a></li>
-            <li><a href="{{ path('calendar') }}">Calendrier</a></li>
-            <li><a href="{{ path('amongus') }}">Among Us</a></li>
-            <li><a href="{{ path('lol') }}">League of Legends</a></li>
-            <li><a href="{{ path('tft') }}">TFT</a></li>
-            <li><a href="{{ path('rocketleague') }}">Rocket League</a></li>
-            <li><a href="{{ path('twitch') }}">Qui est en live</a></li>
-        </ul>
-        <ul class="nav-right">
-            {% if app.user %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
-            {% endif %}
-            {% if is_granted('ROLE_EVENTS') %}
-                <li><a href="{{ path('event_new') }}">Créer un événement</a></li>
-            {% endif %}
-                <li><a href="{{ path('app_profile') }}">{{ app.user.username }}</a></li>
-                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
-            {% else %}
-                <li><a href="{{ path('app_login') }}">Connexion</a></li>
-                <li><a href="{{ path('app_register') }}">Inscription</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</header>
-<main>
-    {% block body %}{% endblock %}
-</main>
-<footer>
-    <div class="footer-content">
-        <p>&copy; 2024 Specimen Room. Tous droits réservés.</p>
+    <div class="site-wrapper">
+    <header class="site-header">
+        <nav class="navbar">
+            <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
+            <div class="navbar-menu">
+                <ul class="navbar-links">
+                    <li><a href="{{ path('calendar') }}">Calendrier</a></li>
+                    <li><a href="{{ path('amongus') }}">Among Us</a></li>
+                    <li><a href="{{ path('lol') }}">League of Legends</a></li>
+                    <li><a href="{{ path('tft') }}">TFT</a></li>
+                    <li><a href="{{ path('rocketleague') }}">Rocket League</a></li>
+                    <li><a href="{{ path('twitch') }}">Qui est en live</a></li>
+                </ul>
+                <ul class="navbar-actions">
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_EVENTS') %}
+                            <li><a href="{{ path('event_new') }}">Créer un événement</a></li>
+                        {% endif %}
+                        <li><a href="{{ path('app_profile') }}">{{ app.user.username }}</a></li>
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
     </div>
-</footer>
-    {{ encore_entry_script_tags('app') }}
+    <main class="site-main">
+        {% block body %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Specimen Room. Tous droits réservés.</p>
+        </div>
+    </footer>
 </body>
 </html>
