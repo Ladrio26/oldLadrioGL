@@ -1,7 +1,7 @@
 body {   /* Header Main Footer */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #666694;      /* Fond général du site */
     color: #333;
     display: flex;
     flex-direction: column;

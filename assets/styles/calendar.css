@@ -22,8 +22,8 @@
 }
 
 .event-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #a7a7a7;      /* Fond de l'évènement */
+    border: 1px solid #000000;      /* Bordure de l'évènement */
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
@@ -40,18 +40,18 @@
 .event-card-title {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #007bff;
+    color: #007bff;     /* Titre de l'évènement */
 }
 
 .event-card-subtitle {
     font-size: 1em;
-    color: #6c757d;
+    color: #6c757d;     /* Date de l'évènement */
     margin-bottom: 20px;
 }
 
 .event-card-text {
     font-size: 1em;
-    color: #333;
+    color: #333;        /* Description de l'évènement */
 }
 
 .calendar-no-events .alert {

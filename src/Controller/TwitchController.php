@@ -30,7 +30,7 @@ class TwitchController extends AbstractController
 
             return new JsonResponse($streamersData);
         } catch (\Exception $e) {
-            return new JsonResponse(['error' => $e->getMessage()], 60);
+            return new JsonResponse(['error' => $e->getMessage()], 500);
         }
     }
 }

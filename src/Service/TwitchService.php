@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class TwitchService
@@ -9,14 +10,14 @@ class TwitchService
     private $client;
     private $clientId;
     private $clientSecret;
-    private $token;
+    private $cache;
 
-    public function __construct(HttpClientInterface $client, string $clientId, string $clientSecret)
+    public function __construct(HttpClientInterface $client, string $clientId, string $clientSecret, CacheInterface $cache)
     {
         $this->client = $client;
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
-        $this->token = $this->getAccessToken();
+        $this->cache = $cache;
     }
 
     private function getAccessToken(): string
@@ -36,14 +37,16 @@ class TwitchService
 
     public function getStreamersData(array $streamers): array
     {
+    return $this->cache->get('twitch_streamers_data', function () use ($streamers) {
         $streamersData = [];
+        $token = $this->getAccessToken();
 
         foreach ($streamers as $streamer) {
             $response = $this->client->request('GET', 'https://api.twitch.tv/helix/users', [
                 'query' => ['login' => $streamer],
                 'headers' => [
                     'Client-ID' => $this->clientId,
-                    'Authorization' => 'Bearer ' . $this->token,
+                    'Authorization' => 'Bearer ' . $token,
                 ],
             ]);
 
@@ -53,7 +56,7 @@ class TwitchService
                 'query' => ['user_id' => $user['id']],
                 'headers' => [
                     'Client-ID' => $this->clientId,
-                    'Authorization' => 'Bearer ' . $this->token,
+                    'Authorization' => 'Bearer ' . $token,
                 ],
             ]);
 
@@ -68,5 +71,6 @@ class TwitchService
         }
 
         return $streamersData;
+    }, 300); // TTL de 300 secondes (5 minutes)
     }
 }

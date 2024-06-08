@@ -8,30 +8,17 @@
     <div class="streamers" id="streamers" style="display: none;"></div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cacheKey = 'twitchStreamersData';
-            const cacheTimestampKey = 'twitchStreamersDataTimestamp';
-            const cacheTTL = 60 * 1 * 1000; // Durée de vie du cache en millisecondes (ici 1 minute)
-            const cachedData = sessionStorage.getItem(cacheKey);
-            const cachedTimestamp = sessionStorage.getItem(cacheTimestampKey);
-            const now = new Date().getTime();
-
-            if (cachedData && cachedTimestamp && (now - cachedTimestamp < cacheTTL)) {
-                renderStreamers(JSON.parse(cachedData));
-            } else {
-                fetch('/api/twitch/streamers')
-                    .then(response => response.json())
-                    .then(data => {
-                        sessionStorage.setItem(cacheKey, JSON.stringify(data));
-                        sessionStorage.setItem(cacheTimestampKey, now.toString());
-                        renderStreamers(data);
-                    })
-                    .catch(error => {
-                        console.error('Error fetching streamers:', error);
-                        document.getElementById('loading').innerText = 'Erreur lors du chargement des données.';
-                    });
-            }
-        });
+        function loadStreamers() {
+            fetch('/api/twitch/streamers')
+                .then(response => response.json())
+                .then(data => {
+                    renderStreamers(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching streamers:', error);
+                    document.getElementById('loading').innerText = 'Erreur lors du chargement des données.';
+                });
+        }
 
         function renderStreamers(streamers) {
             const streamersContainer = document.getElementById('streamers');
@@ -53,5 +40,10 @@
                 streamersContainer.appendChild(streamerDiv);
             });
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStreamers();
+            setInterval(loadStreamers, 300000); // Rafraîchir toutes les 5 minutes
+        });
     </script>
 {% endblock %}
