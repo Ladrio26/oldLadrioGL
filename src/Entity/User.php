@@ -27,6 +27,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $username;
 
+    #[ORM\Column(type: 'string', nullable: true)]
+    private $resetToken;
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): self
+    {
+        $this->resetToken = $resetToken;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -10,5 +10,20 @@
         <p><strong>Pseudo :</strong> {{ user.username }}</p>
         <p><strong>Email :</strong> {{ user.email }}</p>
     </div>
+
+    <div class="change-password">
+        <h2>Changer de mot de passe</h2>
+        {{ form_start(form) }}
+            <div>
+                {{ form_label(form.currentPassword) }}
+                {{ form_widget(form.currentPassword) }}
+            </div>
+            <div>
+                {{ form_label(form.newPassword) }}
+                {{ form_widget(form.newPassword) }}
+            </div>
+            <button type="submit">Changer le mot de passe</button>
+        {{ form_end(form) }}
+    </div>
 </div>
 {% endblock %}
