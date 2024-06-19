@@ -33,7 +33,7 @@ class EventType extends AbstractType
             ->add('jeu', ChoiceType::class, [
                 'choices' => [
                     'Among Us' => 'Among Us',
-                    'League of Legends' => 'League of Legends',
+                    'LOL' => 'LOL',
                     'TFT' => 'TFT',
                     'Rocket League' => 'Rocket League',
                     // Add other games as needed
