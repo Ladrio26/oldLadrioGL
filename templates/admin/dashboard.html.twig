@@ -9,7 +9,7 @@
     <ul>
         {% for user in users %}
             <li>
-                <strong>{{ user.email }}</strong> - {{ user.roles | join(', ') }}
+                <strong>{{ user.username }}</strong> - {{ user.email }} - {{ user.roles | join(', ') }}
                 <a href="{{ path('admin_edit_user', {'id': user.id}) }}">Modifier les rôles</a>
             </li>
         {% else %}

@@ -4,3 +4,4 @@ registration_form:
     email: Email
     password: Mot de passe
     submit: S'inscrire
+    register: S'inscrire

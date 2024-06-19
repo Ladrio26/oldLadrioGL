@@ -1,5 +1,7 @@
 <?php
 
+// Inscription à la LLAN
+
 namespace App\Form;
 
 use App\Entity\LlanRegistration;
@@ -11,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LlanRegistrationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) // Construction d'un formulaire en mettant les différents champs dans un tableau
     {
         if (!$options['user']) {
             $builder

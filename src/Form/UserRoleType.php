@@ -1,5 +1,7 @@
 <?php
 
+// Changement des rôles des utilisateurs
+
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +20,8 @@ class UserRoleType extends AbstractType
                     'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
                     'VIP' => 'ROLE_VIP',
-                    'Events' => 'ROLE_EVENTS'
+                    'Events' => 'ROLE_EVENTS',
+                    'Family' => 'ROLE_FAMILY'
                 ],
                 'expanded' => true,
                 'multiple' => true,

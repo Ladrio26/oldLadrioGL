@@ -30,6 +30,9 @@
                         {% if is_granted('ROLE_ADMIN') %}
                             <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
                         {% endif %}
+                        {% if is_granted('ROLE_FAMILY') %}
+                            <li><a href="{{ path('family') }}">Famille</a></li>
+                        {% endif %}
                         {% if is_granted('ROLE_EVENTS') %}
                             <li><a href="{{ path('event_new') }}">Créer un événement</a></li>
                         {% endif %}
@@ -49,7 +52,7 @@
     </main>
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2024 Specimen Room. Tous droits réservés.</p>
+            <p>&copy; {{ "now"|date("Y") }} Jolan LANQUETIN. Tous droits réservés.</p>
         </div>
     </footer>
 </body>

@@ -4,6 +4,17 @@
 
 {% block body %}
 <div class="homepage">
-<h1>Bienvenue sur le site de Ladrio !</h1>
+
+    {% if app.user %}
+        <h1>Bienvenue {{ app.user.username }}! Prend un cookie! </h1>
+    {% else %}
+        <h1>Bienvenue sur mon site !</h1>
+        <div class="auth-message">
+                    <ul>Pensez à vous connecter<a href="{{ path('app_login') }}" class="btn btn-login">Se connecter</a></ul>
+                    <ul>Vous n'avez pas de compte ? c'est par ici<a href="{{ path('app_register') }}" class="btn btn-login">S'inscrire</a></ul>
+        </div>
+    {% endif %}
+
+        <h3>Tu retrouveras ici les différents événements qui gravitent autour de mon entourage.</h2>
 </div>
 {% endblock %}

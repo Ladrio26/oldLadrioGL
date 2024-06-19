@@ -1,5 +1,7 @@
 <?php
 
+// Création d'un événement sur le site (event)
+
 namespace App\Form;
 
 use App\Entity\Event;
@@ -13,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EventType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) // Construction d'un formulaire en mettant les différents champs dans un tableau
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])

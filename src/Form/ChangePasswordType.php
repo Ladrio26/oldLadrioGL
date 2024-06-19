@@ -1,5 +1,7 @@
 <?php
 
+// Changement de mdp sur le site (Page profile)
+
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -9,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChangePasswordType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options) // Construction d'un formulaire en mettant les différents champs dans un tableau
     {
         $builder
             ->add('currentPassword', PasswordType::class, [

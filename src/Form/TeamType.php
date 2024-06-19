@@ -12,7 +12,7 @@ class TeamType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        $builder // Création d'une équipe dans la bdd avec plusieurs arguments
             ->add('name', TextType::class, [
                 'label' => 'Nom de l\'équipe',
             ])

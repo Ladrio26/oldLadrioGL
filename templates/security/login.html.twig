@@ -14,20 +14,20 @@
     <form action="{{ path('app_login') }}" method="post" class="center-form">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="_username" value="{{ last_username }}" required autofocus>
-    </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="_username" value="{{ last_username }}" required autofocus>
+        </div>
 
-    <div class="form-group">    
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" required>
-    </div>
+        <div class="form-group">    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="_password" required>
+        </div>
 
-        <button type="submit">Login</button>
-    </form>
+            <button type="submit">Login</button>
+        </form>
 
-    <div>
+        <div>
         <a href="{{ path('app_register') }}">Pas de compte ? S'inscrire</a>
     </div>
 </div>

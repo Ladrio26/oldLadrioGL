@@ -1,7 +1,5 @@
 <?php
 
-// src/Controller/LlanController.php
-
 namespace App\Controller;
 
 use App\Entity\LlanRegistration;
@@ -19,7 +17,7 @@ use Symfony\Component\Security\Core\Security;
 
 class LlanController extends AbstractController
 {
-    #[Route('/llan', name: 'llan')]
+    #[Route('/llan', name: 'llan')] // Page de la LLAN
     public function about(LlanRegistrationRepository $registrationRepository): Response
     {
         $user = $this->getUser();
@@ -49,12 +47,12 @@ class LlanController extends AbstractController
         ]);
     }
 
-    #[Route('/register-alone', name: 'register_alone')]
+    #[Route('/register-alone', name: 'register_alone')] // Page pour s'inscrire seul à la LLAN
     public function registerAlone(Request $request, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         if (!$user) {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
         }
 
         $registration = new LlanRegistration();
@@ -79,12 +77,12 @@ class LlanController extends AbstractController
         ]);
     }
 
-    #[Route('/create-team', name: 'create_team')]
+    #[Route('/create-team', name: 'create_team')] // Page d'inscription à la LLAN pour créer une équipe
     public function createTeam(Request $request, EntityManagerInterface $entityManager, LlanRegistrationRepository $registrationRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
         }
 
         $team = new Team();
@@ -115,13 +113,13 @@ class LlanController extends AbstractController
         ]);
     }
 
-    #[Route('/join-team', name: 'join_team')]
+    #[Route('/join-team', name: 'join_team')] // Page d'inscription à la LLAN en rejoignant une team
     public function joinTeam(Request $request, TeamRepository $teamRepository, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
         if (!$user) {
             $this->addFlash('error', 'Vous devez être connecté pour rejoindre une équipe.');
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
         }
 
         $teams = $teamRepository->findAll();
@@ -152,12 +150,12 @@ class LlanController extends AbstractController
         ]);
     }
 
-    #[Route('/unregister', name: 'unregister')]
+    #[Route('/unregister', name: 'unregister')] // Page pour se désinscrire de la LLAN
     public function unregister(EntityManagerInterface $entityManager, LlanRegistrationRepository $registrationRepository, TeamRepository $teamRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
         }
 
         $registration = $registrationRepository->findOneBy(['email' => $user->getEmail()]);
@@ -176,7 +174,7 @@ class LlanController extends AbstractController
             $this->addFlash('error', 'Vous n\'êtes pas inscrit.');
         }
 
-        return $this->redirectToRoute('llan');
+        return $this->redirectToRoute('llan'); // Redirige vers la page de la LLAN après la désinscription
     }
 
     private function checkAndRemoveEmptyTeam(Team $team, EntityManagerInterface $entityManager): void

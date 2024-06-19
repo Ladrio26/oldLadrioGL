@@ -5,6 +5,7 @@ parameters:
 services:
     App\Service\TwitchService:
         arguments:
+            $client: '@http_client'
             $clientId: '%twitch.client_id%'
             $clientSecret: '%twitch.client_secret%'
         public: true

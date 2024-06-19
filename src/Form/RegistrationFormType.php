@@ -1,5 +1,7 @@
 <?php
 
+// Création d'un compte sur le site (Inscription)
+
 namespace App\Form;
 
 use App\Entity\User;
@@ -12,7 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationFormType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void // Construction d'un formulaire en mettant les différents champs dans un tableau
     {
         $builder
             ->add('username', TextType::class, [
