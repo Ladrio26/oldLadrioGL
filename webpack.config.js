@@ -8,6 +8,7 @@ Encore
     .addEntry('footer', './assets/styles/footer.css')
     .addEntry('header', './assets/styles/header.css')
     .addEntry('calendar', './assets/styles/calendar.css')
+    .addEntry('llan', './assets/styles/llan.css')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

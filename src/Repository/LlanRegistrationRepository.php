@@ -2,22 +2,22 @@
 
 namespace App\Repository;
 
-use App\Entity\Llan;
+use App\Entity\LlanRegistration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Llan>
+ * @extends ServiceEntityRepository<LlanRegistration>
  */
-class LlanRepository extends ServiceEntityRepository
+class LlanRegistrationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Llan::class);
+        parent::__construct($registry, LlanRegistration::class);
     }
 
     //    /**
-    //     * @return Llan[] Returns an array of Llan objects
+    //     * @return LlanRegistration[] Returns an array of LlanRegistration objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class LlanRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Llan
+    //    public function findOneBySomeField($value): ?LlanRegistration
     //    {
     //        return $this->createQueryBuilder('l')
     //            ->andWhere('l.exampleField = :val')

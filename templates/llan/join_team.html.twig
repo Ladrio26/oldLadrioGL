@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="form-container">
+        <h1>Rejoindre une équipe</h1>
+        {{ form_start(form) }}
+            {% if form.name is defined %}
+                {{ form_row(form.name) }}
+            {% endif %}
+            {% if form.email is defined %}
+                {{ form_row(form.email) }}
+            {% endif %}
+            <label for="team">Choisir une équipe:</label>
+            <select id="team" name="team_id">
+                {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Rejoindre l'équipe</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

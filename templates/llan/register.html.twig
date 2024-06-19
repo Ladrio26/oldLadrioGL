@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription LLAN{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Inscription pour LLAN</h1>
+        {% if registration %}
+            {% if registration.isAlone %}
+                <p>Vous êtes inscrit seul.</p>
+                <h2>Utilisateurs inscrits seuls :</h2>
+                <ul>
+                    {% for reg in aloneRegistrations %}
+                        <li>{{ reg.user.username }}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Options :</h3>
+                <form method="post" id="next-step-form">
+                    <div id="registration-choice" class="form-group">
+                        {{ form_label(form.registrationChoice) }}
+                        {{ form_widget(form.registrationChoice) }}
+                        {{ form_errors(form.registrationChoice) }}
+                        <button type="button" id="validate-choice" class="btn btn-primary mt-3">Valider</button>
+                    </div>
+                    <div id="team-create" class="form-group" style="display: none;">
+                        {{ form_label(form.teamName) }}
+                        {{ form_widget(form.teamName, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(form.teamName) }}
+                        {{ form_label(form.teamTag) }}
+                        {{ form_widget(form.teamTag, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(form.teamTag) }}
+                        <button type="submit" class="btn btn-primary">Créer l'équipe</button>
+                    </div>
+                    <div id="team-join" class="form-group" style="display: none;">
+                        {{ form_label(form.existingTeam) }}
+                        {{ form_widget(form.existingTeam, { 'attr': {'class': 'form-control'} }) }}
+                        {{ form_errors(form.existingTeam) }}
+                        <div id="no-teams" style="display: none;">
+                            <p>Aucune équipe existante actuellement.</p>
+                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Revenir au début</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Rejoindre l'équipe</button>
+                    </div>
+                </form>
+            {% elseif registration.team %}
+                <p>Vous êtes inscrit dans l'équipe : <strong>{{ registration.team.name }}</strong> (Tag : {{ registration.team.tag }})</p>
+                <p>Joueurs inscrits dans l'équipe :</p>
+                <ul>
+                    <li>{{ registration.team.creator.username }} (Créateur)</li>
+                    {% if registration.team.partner %}
+                        <li>{{ registration.team.partner.username }} (Partenaire)</li>
+                    {% endif %}
+                </ul>
+                {% if isCreator %}
+                    {% if registration.team.partner %}
+                        <a href="{{ path('llan_leave_team') }}" class="btn btn-warning">Supprimer le partenaire</a>
+                    {% endif %}
+                    {% if not registration.team.partner %}
+                        <a href="{{ path('llan_delete_team') }}" class="btn btn-danger">Supprimer l'équipe</a>
+                    {% endif %}
+                {% else %}
+                    <a href="{{ path('llan_leave_team') }}" class="btn btn-warning">Quitter l'équipe</a>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {{ form_start(form) }}
+                <div id="registration-choice" class="form-group">
+                    {{ form_label(form.registrationChoice) }}
+                    {{ form_widget(form.registrationChoice) }}
+                    {{ form_errors(form.registrationChoice) }}
+                    <button type="button" id="validate-choice" class="btn btn-primary mt-3">Valider</button>
+                </div>
+            {{ form_end(form) }}
+        {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const registrationChoice = document.querySelector('input[name="llan_registration[registrationChoice]"]:checked');
+            const teamCreate = document.getElementById('team-create');
+            const teamJoin = document.getElementById('team-join');
+            const existingTeam = document.getElementById('{{ form.existingTeam.vars.id }}');
+            const noTeams = document.getElementById('no-teams');
+            const validateChoiceButton = document.getElementById('validate-choice');
+
+            validateChoiceButton.addEventListener('click', function () {
+                const selectedChoice = document.querySelector('input[name="llan_registration[registrationChoice]"]:checked');
+                if (!selectedChoice) {
+                    alert('Veuillez sélectionner une option.');
+                    return;
+                }
+
+                const choiceValue = selectedChoice.value;
+                teamCreate.style.display = 'none';
+                teamJoin.style.display = 'none';
+                noTeams.style.display = 'none';
+
+                if (choiceValue === 'create_team') {
+                    teamCreate.style.display = 'block';
+                } else if (choiceValue === 'join_team') {
+                    if (existingTeam.options.length > 1) {
+                        teamJoin.style.display = 'block';
+                    } else {
+                        noTeams.style.display = 'block';
+                    }
+                }
+            });
+        });
+
+        function resetForm() {
+            const registrationChoice = document.querySelectorAll('input[name="llan_registration[registrationChoice]"]');
+            registrationChoice.forEach(choice => choice.checked = false);
+            document.getElementById('team-create').style.display = 'none';
+            document.getElementById('team-join').style.display = 'none';
+            document.getElementById('no-teams').style.display = 'none';
+        }
+    </script>
+{% endblock %}

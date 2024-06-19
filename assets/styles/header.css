@@ -9,14 +9,16 @@
     color: #fff;
     padding: 0;
     margin: 0;
+    margin-bottom: 2px;
 }
 
 .navbar {   /* Barre de Navigation au complet */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
     margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .navbar-brand {   /* Accueil */

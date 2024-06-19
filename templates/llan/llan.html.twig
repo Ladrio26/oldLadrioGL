@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        {% if isRegistered %}
+            <div class="left-sidebar">
+                <h2>Informations sur les jeux :</h2>
+                <ul>
+                    <li><strong>Minecraft :</strong> <span class="info-minecraft">Serveur dispo prochainement</span></li>
+                    <li><strong>Geoguessr :</strong> <span class="info-geoguessr">Pas de futures soirées prévues à ce jour</span></li>
+                    <li><strong>Trackmania² Stadium :</strong> <span class="info-trackmania">Nom du serveur : LLAN / Mot de passe : framboise</span></li>
+                </ul>
+            </div>
+        {% endif %}
+        <div class="main-content">
+            {% if app.user %}
+                <div class="registration-status">
+                    {% if registration %}
+                        {% if registration.team %}
+                            <p>Membre de l'équipe {{ registration.team.name }} avec {{ teamMembers|length - 1 }} coéquipier(s):</p>
+                            <ul>
+                                {% for member in teamMembers %}
+                                    {% if member.email != app.user.email %}
+                                        <li>{{ member.name }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>Inscrit seul</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Non inscrit</p>
+                    {% endif %}
+                </div>
+
+                {% if isRegistered %}
+                    <div class="button-container">
+                        <a href="{{ path('unregister') }}" class="btn btn-danger">Se désinscrire</a>
+                    </div>
+                {% else %}
+                    <div class="button-container">
+                        <a href="{{ path('register_alone') }}" class="btn">S'inscrire Seul</a>
+                        <a href="{{ path('create_team') }}" class="btn">Créer son équipe</a>
+                        <a href="{{ path('join_team') }}" class="btn">Rejoindre une équipe</a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="auth-message">
+                    <p>Vous devez être connecté pour vous inscrire. <a href="{{ path('app_login') }}" class="btn btn-login">Se connecter</a></p>
+                </div>
+            {% endif %}
+            <h1>LLAN</h1>
+            <div class="event-details">
+                <p><strong>Date :</strong> Dimanche 1er Septembre 2024</p>
+                <p><strong>Heure :</strong> De 14h à 18h (Soyez présent 30min en avance, et prévoyez un possible retard de 30min)</p>
+                <p><strong>Prix à gagner :</strong> Cash prize de 100€ pour l'équipe gagnante</p>
+                <p><strong>Jeux :</strong></p>
+                <ul>
+                    <li>Minecraft</li>
+                    <li>Geoguessr</li>
+                    <li>Trackmania² Stadium</li>
+                </ul>
+                <h2>Principe de la compétition :</h2>
+                <p>L'inscription se fait en équipe de 2 ! Vous pouvez tout de même vous inscrire seul, vous serez mis en contact avec les autres joueurs inscrits seuls pour former votre équipe.</p>
+                <p>L'inscription est gratuite mais vous devez vous procurer tous les jeux (la version gratuite de Geoguessr est suffisante, les autres jeux sont payants)</p>
+                <p><strong>Minecraft :</strong> une série de 3 épreuves : Une course style Parkour, Un PVP, et Une Survie, votre classement à chacune des épreuves rapportera des points à votre équipe.</p>
+                <p><strong>Geoguessr :</strong> une série de points à trouver sur terre, plus vous serez proche, plus vous rapporterez de point à votre équipe.</p>
+                <p><strong>Trackmania² Stadium :</strong> Une série de plusieurs map Custom, votre classement à chaque map rapportera des points à votre équipe.</p>
+                <p>Chacun des 3 jeux aura une valeur équivalente pour le classement final.</p>
+                <h2>Préparations :</h2>
+                <p>Durant les 70 jours restants qui vous séparent de la compétition, vous avez tout d'abord un serveur Trackmania² Stadium déjà mis à votre disposition avec l'intégralité des maps sur le serveur.</p>
+                <p>Vous aurez prochainement accès à un serveur Minecraft pour vous entrainez aux différentes épreuves.</p>
+                <p>Pour Geoguessr, des soirées entrainements seront régulièrement organisées. Aucune obligation de participations à ces soirées. Rien ne vous empêche de vous entrainer de votre côté.</p>
+                <p>Les inscriptions se passent sur cette page. Merci de ne rejoindre une équipe que si vous vous êtes mis d'accord avec votre coéquipier. En cas d'abus, une suppression de votre inscription sera effectuée.</p>
+                <p>Vous avez jusqu'au 28 Juillet, 23h59 pour vous inscrire.</p>
+                <p>Nous nous réservons le droit de refuser toute inscription.</p>
+                <p>A très bientôt.</p>
+                <p>Ladrio</p>
+            </div>
+        </div>
+        {% if app.user and soloRegistrations|length > 0 %}
+            <div class="sidebar">
+                <h2>Inscrits seuls :</h2>
+                <ul>
+                    {% for solo in soloRegistrations %}
+                        <li>{{ solo.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
