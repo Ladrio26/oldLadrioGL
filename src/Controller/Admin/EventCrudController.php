@@ -3,10 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Event;
+use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class EventCrudController extends AbstractCrudController
 {
@@ -15,14 +13,23 @@ class EventCrudController extends AbstractCrudController
         return Event::class;
     }
 
-    /*
-    public function configureFields(string $pageName): iterable
+    public function createEntity(string $entityFqcn)
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        $this->denyAccessUnlessGranted('ROLE_EVENTS');
+        return new Event();
     }
-    */
+
+    public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $this->denyAccessUnlessGranted('ROLE_EVENTS');
+        parent::updateEntity($entityManager, $entityInstance);
+    }
+
+    public function deleteEntity(EntityManagerInterface $entityManager, $entityInstance): void
+    {
+        $this->denyAccessUnlessGranted('ROLE_EVENTS');
+        parent::deleteEntity($entityManager, $entityInstance);
+    }
+
+    // Vous pouvez redéfinir d'autres méthodes similaires si nécessaire
 }

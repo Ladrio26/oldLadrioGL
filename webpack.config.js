@@ -9,6 +9,7 @@ Encore
     .addEntry('header', './assets/styles/header.css')
     .addEntry('calendar', './assets/styles/calendar.css')
     .addEntry('llan', './assets/styles/llan.css')
+    .addEntry('twitch', './assets/styles/twitch.css')
     .splitEntryChunks()
     .enableSingleRuntimeChunk()
     .cleanupOutputBeforeBuild()

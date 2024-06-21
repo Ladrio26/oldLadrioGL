@@ -27,4 +27,5 @@ security:
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/panel, role: ROLE_ADMIN }
+        - { path: ^/panel, role: ROLE_EVENTS }
+        - { path: ^/admin/event, roles: ROLE_EVENTS }

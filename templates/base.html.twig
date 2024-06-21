@@ -9,6 +9,7 @@
     {{ encore_entry_link_tags('header') }}
     {{ encore_entry_link_tags('calendar') }}
     {{ encore_entry_link_tags('llan') }}
+    {{ encore_entry_link_tags('twitch') }}
 </head>
 <body>
     <div class="site-wrapper">
@@ -27,15 +28,11 @@
                 </ul>
                 <ul class="navbar-actions">
                     {% if app.user %}
-                        {% if is_granted('ROLE_ADMIN') %}
+                        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_EVENTS') %}
                             <li><a href="{{ path('panel') }}">Panel</a></li>
-                            <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_FAMILY') %}
                             <li><a href="{{ path('family') }}">Famille</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_EVENTS') %}
-                            <li><a href="{{ path('event_new') }}">Créer un événement</a></li>
                         {% endif %}
                         <li><a href="{{ path('app_profile') }}">{{ app.user.username }}</a></li>
                         <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
