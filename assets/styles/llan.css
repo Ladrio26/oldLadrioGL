@@ -13,6 +13,7 @@
     border-radius: 10px;
     margin-right: 20px;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .left-sidebar h2 {
@@ -33,6 +34,7 @@
     border-radius: 10px;
     margin-left: 20px;
     flex-shrink: 0;
+    overflow: hidden;
 }
 
 .sidebar h2 {

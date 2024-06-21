@@ -6,9 +6,9 @@
             <div class="left-sidebar">
                 <h2>Informations sur les jeux :</h2>
                 <ul>
-                    <li><strong>Minecraft :</strong> <span class="info-minecraft">Serveur dispo prochainement</span></li>
-                    <li><strong>Geoguessr :</strong> <span class="info-geoguessr">Pas de futures soirées prévues à ce jour</span></li>
-                    <li><strong>Trackmania² Stadium :</strong> <span class="info-trackmania">Nom du serveur : LLAN / Mot de passe : framboise</span></li>
+                    <li><div class="button-container"><a href="{{ path('minecraft') }}">Infos sur Minecraft</a></div></li>
+                    <li><div class="button-container"><a href="{{ path('geoguessr') }}">Infos sur Geoguessr</a></div></li>
+                    <li><div class="button-container"><a href="{{ path('trackmania') }}">Infos sur Trackmania</a></div></li>
                 </ul>
             </div>
         {% endif %}
@@ -82,6 +82,7 @@
         {% if app.user and soloRegistrations|length > 0 %}
             <div class="sidebar">
                 <h2>Inscrits seuls :</h2>
+                <h6>(Recherchez un partenaire!)</h6>
                 <ul>
                     {% for solo in soloRegistrations %}
                         <li>{{ solo.name }}</li>

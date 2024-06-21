@@ -17,16 +17,18 @@
 }
 
 .calendar-event {
-    flex: 1 1 calc(50% - 20px);
-    max-width: calc(50% - 20px);
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
 }
 
 .event-card {
     background-color: #a7a7a7;      /* Fond de l'évènement */
     border: 1px solid #000000;      /* Bordure de l'évènement */
-    border-radius: 5px;
+    border-radius: 10px;             /* Arrondir les coins légèrement pour un effet carré */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    overflow: hidden;               /* Assurer que le contenu ne déborde pas */
+    height: 250px;                  /* Ajuster la hauteur pour rendre l'encart plus carré */
 }
 
 .event-card:hover {
@@ -34,24 +36,24 @@
 }
 
 .event-card-body {
-    padding: 20px;
+    padding: 15px;
 }
 
-.event-card-title {
-    font-size: 1.5em;
+.event-card-title {         /* Titre */
+    font-size: 1.2em;       /* Taille de la police */
     margin-bottom: 10px;
-    color: #007bff;     /* Titre de l'évènement */
+    color: #007bff;
 }
 
-.event-card-subtitle {
-    font-size: 1em;
-    color: #6c757d;     /* Date de l'évènement */
-    margin-bottom: 20px;
+.event-card-subtitle {      /* Date */
+    font-size: 0.9em;     /* Taille de la police */
+    color: #6c757d;
+    margin-bottom: 10px;
 }
 
-.event-card-text {
-    font-size: 1em;
-    color: #333;        /* Description de l'évènement */
+.event-card-text {          /* Description */
+    font-size: 0.9em;     /* Taille de la police */
+    color: #333;
 }
 
 .calendar-no-events .alert {
