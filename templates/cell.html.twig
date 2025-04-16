@@ -1,0 +1,23 @@
+{# base.html.twig or a specific page template #}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon jeu de cellule{% endblock %}</title>
+    {# Inclure p5.js et Matter.js #}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+</head>
+<body>
+{# Ajouter un conteneur pour le canvas #}
+<div id="game-container"></div>
+{% block body %}
+    <h1>Mon jeu de cellule</h1>
+    {# Le jeu sera affiché ici #}
+    <div id="game-container"></div>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('sketchjs') }}
+    {% endblock %}
+{% endblock %}
+</body>
+</html>

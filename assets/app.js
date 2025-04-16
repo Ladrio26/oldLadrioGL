@@ -13,3 +13,6 @@ import './styles/main.css';
 import './styles/calendar.css';
 import './styles/llan.css';
 import './styles/twitch.css';
+import './styles/buttons.css';
+import './styles/memory.css';
+import './styles/morpion.css';

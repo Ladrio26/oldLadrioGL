@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu de Morpion{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('morpion') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Jeu de Morpion</h1>
+    <div id="statusText">X's Turn</div>
+    <div id="morpion-game" class="morpion-game">
+        <div class="cell" cellIndex="0"></div>
+        <div class="cell" cellIndex="1"></div>
+        <div class="cell" cellIndex="2"></div>
+        <div class="cell" cellIndex="3"></div>
+        <div class="cell" cellIndex="4"></div>
+        <div class="cell" cellIndex="5"></div>
+        <div class="cell" cellIndex="6"></div>
+        <div class="cell" cellIndex="7"></div>
+        <div class="cell" cellIndex="8"></div>
+    </div>
+    <button id="restartBtn">Restart Game</button>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('morpionjs') }}
+    {% endblock %}
+{% endblock %}

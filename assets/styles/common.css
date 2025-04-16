@@ -1,4 +1,4 @@
-body {   /* Header Main Footer */
+body {                               /* Header Main Footer */
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #666694;      /* Fond général du site */
@@ -117,4 +117,8 @@ a {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+.error-message {
+    text-align: center;
 }

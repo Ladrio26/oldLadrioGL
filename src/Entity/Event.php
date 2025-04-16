@@ -14,7 +14,7 @@ class Event
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 64)]
     private $title;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -23,7 +23,7 @@ class Event
     #[ORM\Column(type: 'datetime')]
     private $date;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 16)]
     private $jeu;
 
     public function getId(): ?int

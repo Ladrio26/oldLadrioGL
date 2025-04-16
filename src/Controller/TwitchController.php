@@ -20,7 +20,7 @@ class TwitchController extends AbstractController
     public function getStreamersData(TwitchService $twitchService): JsonResponse
     {
         try {
-            $streamers = ['Ladrio_', '16corp', 'ts_jean_bon', 'Bangatft', 'Emo_emotive', 'StevenLNK_', 'FranckyHS', 'Lenoraclyne', 'Dangodfroid'];
+            $streamers = ['Ladrio_', '16corp', 'ts_jean_bon', 'Bangatft', 'Emo_emotive', 'StevenLNK_', 'FranckyHS', 'Lenoraclyne', 'Dangodfroid', 'Aeteralive', 'docteurandross', 'razgrizlebarbu'];
             $streamersData = $twitchService->getStreamersData($streamers);
 
             // Trier les streamers : ceux qui sont en live en premier

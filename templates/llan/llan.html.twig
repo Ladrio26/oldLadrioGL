@@ -2,16 +2,17 @@
 
 {% block body %}
     <div class="content-wrapper">
-        {% if isRegistered %}
             <div class="left-sidebar">
                 <h2>Informations sur les jeux :</h2>
-                <ul>
+                <div style="list-style-type: none; padding-inline-start: unset;">
+                    <ul>
                     <li><div class="button-container"><a href="{{ path('minecraft') }}">Infos sur Minecraft</a></div></li>
                     <li><div class="button-container"><a href="{{ path('geoguessr') }}">Infos sur Geoguessr</a></div></li>
                     <li><div class="button-container"><a href="{{ path('trackmania') }}">Infos sur Trackmania</a></div></li>
                 </ul>
+                </div>
+                <h4>Pour toute question relative à la LLAN, n'hésitez pas à venir me MP sur discord</h4>
             </div>
-        {% endif %}
         <div class="main-content">
             {% if app.user %}
                 <div class="registration-status">
@@ -46,7 +47,7 @@
                 {% endif %}
             {% else %}
                 <div class="auth-message">
-                    <ul>Pensez à vous connecter<a href="{{ path('app_login') }}" class="btn btn-login">Se connecter</a></ul>
+                    <ul>Pour vous inscrire, Pensez à vous connecter<a href="{{ path('app_login') }}" class="btn btn-login">Se connecter</a></ul>
                     <ul>Vous n'avez pas de compte ? c'est par ici<a href="{{ path('app_register') }}" class="btn btn-login">S'inscrire</a></ul>
                 </div>
             {% endif %}

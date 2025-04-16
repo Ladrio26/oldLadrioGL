@@ -3,10 +3,15 @@
 {% block body %}
     <div class="form-container">
         <h1>Créer son équipe</h1>
+        {% for message in app.flashes('team_error') %}
+            <div class="alert alert-error">
+                {{ message }}
+            </div>
+        {% endfor %}
         {{ form_start(form) }}
-            {{ form_row(form.name) }}
-            {{ form_row(form.tag) }}
-            <button type="submit" class="btn btn-primary">Créer l'équipe</button>
+        {{ form_row(form.name) }}
+        {{ form_row(form.tag) }}
+        <button type="submit" class="btn btn-primary">Créer l'équipe</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

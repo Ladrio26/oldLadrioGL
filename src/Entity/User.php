@@ -6,8 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Cette adresse email est déjà utilisée.')]
+#[UniqueEntity(fields: ['username'], message: 'Ce nom d\'utilisateur est déjà pris.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -15,7 +19,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: 'string', length: 64, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Email]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -24,8 +30,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: 'string', length: 32, unique: true)]
+    #[Assert\NotBlank]
     private $username;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $discordId;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $discordUsername;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $discordEmail;
 
     public function getId(): ?int
     {
@@ -96,6 +112,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getDiscordId(): ?string
+    {
+        return $this->discordId;
+    }
+
+    public function setDiscordId(?string $discordId): self
+    {
+        $this->discordId = $discordId;
+
+        return $this;
+    }
+
+    public function getDiscordUsername(): ?string
+    {
+        return $this->discordUsername;
+    }
+
+    public function setDiscordUsername(?string $discordUsername): self
+    {
+        $this->discordUsername = $discordUsername;
+
+        return $this;
+    }
+
+    public function getDiscordEmail(): ?string
+    {
+        return $this->discordEmail;
+    }
+
+    public function setDiscordEmail(?string $discordEmail): self
+    {
+        $this->discordEmail = $discordEmail;
 
         return $this;
     }

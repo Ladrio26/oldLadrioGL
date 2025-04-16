@@ -1,5 +1,10 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+    resource: ../src/Controller/
     type: attribute
+
+connect_discord:
+    path: /connect/discord
+    controller: App\Controller\DiscordSecurityController::connect
+
+connect_discord_check:
+    path: /connect/discord/check

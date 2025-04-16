@@ -14,6 +14,7 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
+    padding: 3px;
 }
 
 .calendar-event {

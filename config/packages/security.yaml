@@ -9,6 +9,9 @@ security:
                 class: App\Entity\User
                 property: email
 
+        discord_user_provider:
+            id: App\Security\DiscordUserProvider
+
     firewalls:
         main:
             lazy: true
@@ -17,15 +20,18 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-                
+
+            custom_authenticators:
+                - App\Security\DiscordAuthenticator
+
             logout:
                 path: app_logout
-                # where to redirect after logout
-                # target: app_any_route
 
     access_control:
+        - { path: ^/connect/discord, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connect/discord/check, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/panel, role: ROLE_EVENTS }
+        - { path: ^/panel, roles: ROLE_EVENTS }
         - { path: ^/admin/event, roles: ROLE_EVENTS }

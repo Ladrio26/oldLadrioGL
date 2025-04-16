@@ -10,20 +10,25 @@
     {{ encore_entry_link_tags('calendar') }}
     {{ encore_entry_link_tags('llan') }}
     {{ encore_entry_link_tags('twitch') }}
+    {{ encore_entry_link_tags('buttons') }}
 </head>
 <body>
-    <div class="site-wrapper">
+<div class="site-wrapper">
     <header class="site-header">
         <nav class="navbar">
             <a class="navbar-brand" href="{{ path('home') }}">Accueil</a>
             <div class="navbar-menu">
                 <ul class="navbar-links">
                     <li><a href="{{ path('calendar') }}">Calendrier</a></li>
-                    <li><a href="{{ path('amongus') }}">Among Us</a></li>
-                    <li><a href="{{ path('lol') }}">League of Legends</a></li>
-                    <li><a href="{{ path('tft') }}">TFT</a></li>
-                    <li><a href="{{ path('rocketleague') }}">Rocket League</a></li>
-                    <li><a href="{{ path('llan') }}">LLAN</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Jeux</a>
+                        <div class="dropdown-content">
+                            <a href="{{ path('amongus') }}">Among Us</a>
+                            <a href="{{ path('lol') }}">League of Legends</a>
+                            <a href="{{ path('tft') }}">TFT</a>
+                            <a href="{{ path('rocketleague') }}">Rocket League</a>
+                        </div>
+                    </li>
                     <li><a href="{{ path('twitch') }}">Qui est en live</a></li>
                 </ul>
                 <ul class="navbar-actions">
@@ -44,14 +49,14 @@
             </div>
         </nav>
     </header>
+</div>
+<main class="site-main">
+    {% block body %}{% endblock %}
+</main>
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; {{ "now"|date("Y") }} Jolan LANQUETIN. Tous droits réservés. | <a href="{{ path('about') }}">A propos de moi</a></p>
     </div>
-    <main class="site-main">
-        {% block body %}{% endblock %}
-    </main>
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; {{ "now"|date("Y") }} Jolan LANQUETIN. Tous droits réservés.</p>
-        </div>
-    </footer>
+</footer>
 </body>
 </html>

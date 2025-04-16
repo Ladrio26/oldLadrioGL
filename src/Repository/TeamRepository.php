@@ -16,28 +16,48 @@ class TeamRepository extends ServiceEntityRepository
         parent::__construct($registry, Team::class);
     }
 
-    //    /**
-    //     * @return Team[] Returns an array of Team objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('t.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /**
+     * Finds teams with only one member.
+     *
+     * @return Team[] Returns an array of Team objects
+     */
+    public function findTeamsWithOneMember(): array
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.members', 'm')
+            ->groupBy('t.id')
+            ->having('COUNT(m.id) = 1')
+            ->getQuery()
+            ->getResult();
+    }
 
-    //    public function findOneBySomeField($value): ?Team
-    //    {
-    //        return $this->createQueryBuilder('t')
-    //            ->andWhere('t.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Finds a team by its name.
+     *
+     * @param string $name
+     * @return Team|null
+     */
+    public function findOneByName(string $name): ?Team
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.name = :name')
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * Finds a team by its tag.
+     *
+     * @param string $tag
+     * @return Team|null
+     */
+    public function findOneByTag(string $tag): ?Team
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.tag = :tag')
+            ->setParameter('tag', $tag)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

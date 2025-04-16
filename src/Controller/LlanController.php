@@ -78,11 +78,17 @@ class LlanController extends AbstractController
     }
 
     #[Route('/create-team', name: 'create_team')] // Page d'inscription à la LLAN pour créer une équipe
-    public function createTeam(Request $request, EntityManagerInterface $entityManager, LlanRegistrationRepository $registrationRepository): Response
+    public function createTeam(Request $request, EntityManagerInterface $entityManager, LlanRegistrationRepository $registrationRepository, TeamRepository $teamRepository): Response
     {
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
+        }
+
+        // Supprime tous les messages flash précédents
+        $session = $request->getSession();
+        foreach ($session->getFlashBag()->all() as $type => $messages) {
+            $session->getFlashBag()->set($type, []);
         }
 
         $team = new Team();
@@ -91,21 +97,31 @@ class LlanController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($team);
-            $entityManager->flush();
+            // Vérifie si le nom ou le tag de l'équipe existe déjà
+            $existingTeamByName = $teamRepository->findOneByName($team->getName());
+            $existingTeamByTag = $teamRepository->findOneByTag($team->getTag());
 
-            // Inscrire automatiquement l'utilisateur dans l'équipe
-            $registration = $registrationRepository->findOneBy(['email' => $user->getEmail()]);
-            if (!$registration) {
-                $registration = new LlanRegistration();
-                $registration->setName($user->getUsername());
-                $registration->setEmail($user->getEmail());
+            if ($existingTeamByName) {
+                $this->addFlash('error', 'Le nom de l\'équipe existe déjà. Veuillez en choisir un autre.');
+            } elseif ($existingTeamByTag) {
+                $this->addFlash('error', 'Le tag de l\'équipe existe déjà. Veuillez en choisir un autre.');
+            } else {
+                $entityManager->persist($team);
+                $entityManager->flush();
+
+                // Inscrire automatiquement l'utilisateur dans l'équipe
+                $registration = $registrationRepository->findOneBy(['email' => $user->getEmail()]);
+                if (!$registration) {
+                    $registration = new LlanRegistration();
+                    $registration->setName($user->getUsername());
+                    $registration->setEmail($user->getEmail());
+                }
+                $registration->setTeam($team);
+                $entityManager->persist($registration);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('llan');
             }
-            $registration->setTeam($team);
-            $entityManager->persist($registration);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('llan');
         }
 
         return $this->render('llan/create_team.html.twig', [
@@ -122,7 +138,9 @@ class LlanController extends AbstractController
             return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion si déconnecté
         }
 
-        $teams = $teamRepository->findAll();
+        // Récupère les équipes avec un seul membre
+        $teams = $teamRepository->findTeamsWithOneMember();
+
         $registration = new LlanRegistration();
         if ($user) {
             $registration->setName($user->getUsername());

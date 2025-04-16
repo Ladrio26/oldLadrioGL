@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeu de Memory{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('memory') }}
+{% endblock %}
+
+{% block body %}
+    <h1>Jeu de Memory</h1>
+    <div id="memory-game" class="memory-game">
+        <!-- Le contenu du jeu Memory sera généré par le JavaScript -->
+    </div>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('memoryjs') }}
+    {% endblock %}
+{% endblock %}

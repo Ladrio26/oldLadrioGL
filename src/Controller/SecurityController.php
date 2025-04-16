@@ -12,14 +12,15 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]  // Page de Connexion
+    #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('home'); // Rediriger vers la page d'accueil si déjà connecté
+            return $this->redirectToRoute('home');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -31,17 +32,17 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')] // Déconnexion, pas de page affichée
+    #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route(path: '/register', name: 'app_register')] // Page d'inscription
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    #[Route(path: '/register', name: 'app_register')]
+    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('home'); // Rediriger vers la page d'accueil si déjà connecté
+            return $this->redirectToRoute('home');
         }
 
         $user = new User();
@@ -49,6 +50,15 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $errors = $validator->validate($user);
+
+            if (count($errors) > 0) {
+                return $this->render('security/register.html.twig', [
+                    'registrationForm' => $form->createView(),
+                    'errors' => $errors,
+                ]);
+            }
+
             $user->setPassword(
                 $passwordHasher->hashPassword(
                     $user,

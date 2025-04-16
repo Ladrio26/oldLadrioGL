@@ -3,6 +3,7 @@
 {% block body %}
     <div class="form-container">
         <h1>Rejoindre une équipe</h1>
+        <h6>Assurez-vous d'avoir l'accord du créateur de l'équipe avant de la rejoindre</h6>
         {{ form_start(form) }}
             {% if form.name is defined %}
                 {{ form_row(form.name) }}

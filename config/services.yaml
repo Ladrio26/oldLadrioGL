@@ -8,7 +8,17 @@ services:
             $client: '@http_client'
             $clientId: '%twitch.client_id%'
             $clientSecret: '%twitch.client_secret%'
+            $cache: '@cache.app'
         public: true
+
+    App\Security\DiscordAuthenticator:
+        arguments:
+            $clientRegistry: '@knpu.oauth2.registry'
+            $router: '@router'
+            $userProvider: '@App\Security\DiscordUserProvider'
+
+    App\Security\DiscordUserProvider:
+        arguments: []
 
     _defaults:
         autowire: true

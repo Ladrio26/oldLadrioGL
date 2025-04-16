@@ -8,10 +8,11 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'app:add-user-role')]
 class AddUserRoleCommand extends Command
 {
-    protected static $defaultName = 'app:add-user-role';
     private $userRepository;
     private $entityManager;
 

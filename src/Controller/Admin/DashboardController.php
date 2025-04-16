@@ -36,5 +36,8 @@ class DashboardController extends AbstractDashboardController
         } elseif ($this->isGranted('ROLE_EVENTS')) {
             yield MenuItem::linkToCrud('Events', 'fas fa-list', Event::class);
         }
+
+        // Bouton pour revenir sur le site principal
+        yield MenuItem::linkToUrl('Retour au site', 'fas fa-arrow-left', '/');
     }
 }
